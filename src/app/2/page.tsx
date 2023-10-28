@@ -21,7 +21,16 @@ export default function Lesson2() {
         Wykorzystywanie jednej klasy wewnątrz innej. Najczęsciej poprzez przekazanie jej jako argument konstruktora lub funkcji.
       </div>
       <div className="divider"/>
-      <div className='w-full h-[1200px] grid place-items-center'>
+      <div className='w-full h-[800px] grid place-items-center'>
+        <div className='text-white text-[64px]'>Czasy życia serwisu</div>  
+        <div className='text-white text-[32px]'>
+        - Singleton <br/>
+        - Scoped <br/>
+        - Transient <br/>
+        </div>  
+      </div>
+      <div className="divider"/>
+      <div className='w-full h-[1000px] grid place-items-center'>
         <div className='mockup-code w-[1000px]'>
           <pre data-prefix="$">public class A</pre>
           <pre data-prefix="">{'{'}</pre>
@@ -32,46 +41,79 @@ export default function Lesson2() {
           <pre data-prefix="">   {'}'}</pre>
           <pre data-prefix="">{'}'}</pre>
         </div>
-      </div>
-      <div className="divider"/>
-      <div className='w-full h-[1200px] grid place-items-center'>
         <div className='mockup-code w-[1000px]'>
-          <pre data-prefix="1">public class MyContext: DbContext</pre>
-          <pre data-prefix="2">{'{'}</pre>
-          <pre data-prefix="3">   public MyContext() {'{}'}</pre>
-          <pre data-prefix="4"></pre>
-          <pre data-prefix="5">{'   public DbSet<OINV> OINV {get; set;} '}</pre>
-          <pre data-prefix="6">{'   public DbSet<INV1> INV1 {get; set;} '}</pre>
-          <pre data-prefix="7">{'   public DbSet<OADM> OADM {get; set;} '}</pre>
-          <pre data-prefix="8">{'}'}</pre>
+          <pre data-prefix="$">public class B</pre>
+          <pre data-prefix="">{'{'}</pre>
+          <pre data-prefix="">   private static int Instances = 1;</pre>
+          <pre data-prefix="">   public B()</pre>
+          <pre data-prefix="">   {'{'}</pre>
+          <pre data-prefix="">      {'Console.WriteLine($"B: {Instances++}");'}</pre>
+          <pre data-prefix="">   {'}'}</pre>
+          <pre data-prefix="">{'}'}</pre>
+        </div>
+        <div className='mockup-code w-[1000px]'>
+          <pre data-prefix="$">public class C</pre>
+          <pre data-prefix="">{'{'}</pre>
+          <pre data-prefix="">   private static int Instances = 1;</pre>
+          <pre data-prefix="">   public C()</pre>
+          <pre data-prefix="">   {'{'}</pre>
+          <pre data-prefix="">      {'Console.WriteLine($"C: {Instances++}");'}</pre>
+          <pre data-prefix="">   {'}'}</pre>
+          <pre data-prefix="">{'}'}</pre>
         </div>
       </div>
       <div className="divider"/>
+      <div className='w-full h-[800px] grid place-items-center'>
+        <div className='text-white text-[64px]'>Rozwiązywanie zależności</div>  
+        <div className='text-white text-[32px]'>
+        Dotnet będzie próbował rozwiązać zależności w momencie kiedy program upomni się o dowolny z serwisów
+        </div>  
+      </div>
       <div className="divider"/>
-      <div className='w-full h-[1200px] grid place-items-center'>
-        <div className='text-white text-[42px]'>Data annotations</div>  
+      <div className='w-full h-[800px] grid place-items-center'>
+        <div className='text-white text-[64px]'>Ograniczenia lifetime</div>  
+      </div>
+      <div className="divider"/>
+      <div className='w-full h-[800px] grid place-items-center'>
+        <div className='text-white text-[64px]'>Funkcja tworząca serwis</div>  
         <div className='mockup-code w-[1000px]'>
-          {'\t'} OINV.cs
-          <pre>...</pre>
-          <pre>{'[Key] public int DocEntry { get; set; }'}</pre>
-          <pre></pre>
-          <pre>{'public ICollection<INV1> Positions { get; set; }'}</pre>
-          <pre></pre>
-          <pre>{'[ForeignKey("OCRD")] public string CardCode { get; set; }'}</pre>
-          <pre>{'public OCRD OCRD { get; set; }'}</pre>
-          <pre></pre>
-          <pre>{'[NotMapped] public int NumOfRows => this.Position.Count()'}</pre>
-          <pre>...</pre>
+          <pre data-prefix="$">services.AddScoped((serviceProvider) =&gt; &#123; /* Więcej logiki */ return new A(); &#125;</pre>
         </div>
-        <div className='text-white text-[24px] text-center'>[Key] [ForeignKey(e)] [NotMapped] [Required] [MaxLength(x)] [MinLength(x)] [MaxLength(10, ErrorMessage="Text must be 10 characters or less")] [Timestamp] [DatabaseGenerated(DatabaseGeneratedOption.Computed)] [Index(IsUnique = true)] ... </div>  
+      </div>
+      <div className="divider"/>
+      <div className='w-full h-[800px] grid place-items-center'>
+        <div className='mockup-code w-[1000px]'>
+          <pre data-prefix="$">services.AddSingleton((serviceProvider) =&gt; &#123; </pre> 
+          <pre data-prefix="$">   serviceProvier.GetRequiredService&lt;TokenService&gt;().RefteshGlobalToken();</pre>
+          <pre data-prefix="$">   return new A();</pre>
+          <pre data-prefix="$"> &#125;;</pre>
+        </div>
+      </div>
+      <div className="divider"/>
+      <div className='w-full h-[800px] grid place-items-center'>
+        <div className='text-white text-[64px]'>HostedService</div>  
+        <div className='text-white text-[32px] text-center p-16'>
+        HostedService zostanie zainicjowany przy uruchomieniu aplikacji i służy rejestracji serwisów, które cyklicznie wykonują logikę. Serwis musi implementować serwis IHostedService.
+        </div>  
+        <div className='mockup-code w-[1000px]'>
+          <pre data-prefix="$">services.AddHostedService&lt;StatusUpdater&gt;()&#125;</pre>
+        </div>
+      </div>
+      <div className='w-full h-[800px] grid place-items-center'>
+        <div className='text-white text-[64px]'>Rejestracja wielu serwisów pod tym samym typem</div>  
+        <div className='mockup-code w-[1000px]'>
+          <pre data-prefix="$">services.AddSingleton&lt;MyInterface, A&gt;()&#125;</pre>
+          <pre data-prefix="$">services.AddSingleton&lt;MyInterface, B&gt;()&#125;</pre>
+          <pre data-prefix="$">services.AddSingleton&lt;MyInterface, C&gt;()&#125;</pre>
+        </div>
       </div>
       <div className="divider"/>
       <div className='w-full h-[800px] grid place-items-center'>
         <div>
-          <button className='btn btn-lg btn-error mr-12' onClick={() => {router.push('2')}}>
+          <button className='btn btn-lg btn-error mr-12' onClick={() => {router.push('1')}}>
             GO BACK
           </button>
-          <button className='btn btn-lg btn-success' onClick={() => {router.push('4')}}>
+          <button className='btn btn-lg btn-success' onClick={() => {router.push('3')}}>
             GO NEXT
           </button>
         </div>
