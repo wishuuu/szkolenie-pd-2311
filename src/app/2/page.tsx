@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 
 
-export default function Lesson3() {
+export default function Lesson2() {
 
   const router = useRouter();
 
@@ -12,17 +12,25 @@ export default function Lesson3() {
         <div className={'inline text-sky-400'}>Ov</div>Soft
       </div>
       <div className='w-full h-[800px] grid place-items-center'>
-        <div className='text-white text-[64px]'>Entity Framework</div>  
+        <div className='text-white text-[64px]'>Dependency Injection</div>  
       </div>
       <div className="divider"/>
-      <div className='w-full grid place-items-center'>
+      <div className='w-full h-[800px] grid place-items-center text-[32px] text-center'>
+        Dependency injection - wstrzykiwanie zależności.
+
+        Wykorzystywanie jednej klasy wewnątrz innej. Najczęsciej poprzez przekazanie jej jako argument konstruktora lub funkcji.
       </div>
       <div className="divider"/>
       <div className='w-full h-[1200px] grid place-items-center'>
         <div className='mockup-code w-[1000px]'>
-          <pre data-prefix="$">Project.Infrastructure</pre>
-          <pre data-prefix="">   DbContext.cs</pre>
-          <pre data-prefix="">   Migrations/</pre>
+          <pre data-prefix="$">public class A</pre>
+          <pre data-prefix="">{'{'}</pre>
+          <pre data-prefix="">   private static int Instances = 1;</pre>
+          <pre data-prefix="">   public A()</pre>
+          <pre data-prefix="">   {'{'}</pre>
+          <pre data-prefix="">      {'Console.WriteLine($"A: {Instances++}");'}</pre>
+          <pre data-prefix="">   {'}'}</pre>
+          <pre data-prefix="">{'}'}</pre>
         </div>
       </div>
       <div className="divider"/>
