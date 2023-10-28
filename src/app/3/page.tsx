@@ -15,9 +15,6 @@ export default function Lesson3() {
         <div className='text-white text-[64px]'>Entity Framework</div>  
       </div>
       <div className="divider"/>
-      <div className='w-full grid place-items-center'>
-      </div>
-      <div className="divider"/>
       <div className='w-full h-[1200px] grid place-items-center'>
         <div className='mockup-code w-[1000px]'>
           <pre data-prefix="$">Project.Infrastructure</pre>
@@ -69,7 +66,6 @@ export default function Lesson3() {
           <pre>enumerable.Aggregate(...)</pre> 
           <pre>enumerable.Sum(...)</pre> 
           <pre>...</pre> <br/>
-
           <pre>enumerable.Include(...)</pre>
         </div>
       </div>
@@ -81,19 +77,19 @@ export default function Lesson3() {
           <pre>           select (Name: c.Name, OrdersSum: c.Orders.Sum(o =&gt; o.NetPln))</pre>
         </div>
         <a href={'https://github.com/dotnet/try-samples/blob/main/101-linq-samples/src'} target={'_blank'}>
-        <button className="btn">
-        101 przykładów LINQ by Microsoft
-        </button>
+          <button className="btn">
+            101 przykładów LINQ by Microsoft
+          </button>
         </a>
       </div>
       <div className="divider"/>
       <div className='w-full h-[800px] grid place-items-center'>
         <div className='text-white text-[64px]'>Zadanie praktyczne - Implementuj jako LINQ</div>  
         <div className='text-white text-[32px]'>
-        Pobierz listę zamówień (Order) klienta (Customer) gdzie Id klienta = 1<br/>
-        Ile były warte wszystkie zamówienia tego klienta<br/>
-        Ile zamówień klient wykonał w poszczególnych miesiącach<br/>
-        Ile sztuk określonych produktów klient kupił w każdym miesiącu<br/>
+          Pobierz listę zamówień (Order) klienta (Customer) gdzie Id klienta = 1<br/>
+          Ile były warte wszystkie zamówienia tego klienta<br/>
+          Ile zamówień klient wykonał w poszczególnych miesiącach<br/>
+          Ile sztuk określonych produktów klient kupił w każdym miesiącu<br/>
         </div>  
       </div>
       <div className="divider"/>
